@@ -1,0 +1,42 @@
+{
+  "name": "reactApp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "browserify": "browserify public/views/appMain.js -o public/bundle.js",
+    "jsx": "jsx --w public/views/reactViews/ public/templates/"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "ejs": "~2.3.4",
+    "express": "~4.13.3",
+    "browserify": "~12.0.1",
+    "flux": "~2.1.1",
+    "react": "~0.14.2",
+    "path": "~0.12.7",
+    "gulp": "~3.9.0",
+    "gulp-react": "~3.1.0",
+    "react-form-data": "~0.2.3",
+    "body-parser": "~1.14.1",
+    "express-validator": "~2.18.0",
+    "passport-local": "~1.0.0",
+    "passport": "~0.3.2",
+    "express-session": "~1.12.1",
+    "mysql": "~2.9.0",
+    "password-hash": "~1.2.2",
+    "titlebar-react": "~2.0.1",
+    "multer":"0.1.8"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-react": "~3.1.0",
+    "webpack": "~1.12.6",
+    "babel-core": "~6.0.12",
+    "babel-loader": "~6.0.1",
+    "babel-preset-es2015": "~6.0.12"
+  }
+}

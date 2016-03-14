@@ -1,0 +1,70 @@
+var React = require('react'),
+ FormData = require('react-form-data'),
+ LinkedStateMixin = require('react-addons-linked-state-mixin'),
+self;
+var LoginView = React.createClass({
+	mixins: [LinkedStateMixin],
+	handleSubmit:function(e){
+		e.preventDefault()
+		$.ajax({
+			url:'/login',
+			datatype:'json',
+			type:'POST',
+			data:{
+				username:self.state.username,
+				password:self.state.password
+			},
+			success:function(response){
+				 ActionEvents.updateCallBack('changeEvent',response.responseObj);
+			},
+			error:function(reponse){
+
+			}
+		});
+	},
+	getInitialState :function(){
+		self =this;
+		ActionEvents = require('./../../js/Actions/ActionEvents');
+		return {
+			username:null,
+			password:null
+		}
+	},
+	render:function(){
+		return(
+			<section className="col-lg-8 col-md-11 col-sm-6  col-lg-offset-1 login-section  login-section">
+				<div className="col-lg-11 col-md-11 col-sm-6 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+					<div className="row">
+						<h1>Login</h1>
+					</div>
+					<div className="row">
+						<form method="post" action="">
+							<div className="row form-group">
+		  						<div className="col-lg-3 col-md-2 col-sm-3 col-xs-8 col-md-offset-1 col-lg-offset-0 col-md-offset-1 col-sm-offset-0 col-xs-offset-4">
+		  							<label for="userName">User Name:</label>
+		  						</div>
+		  						<div className="col-lg-6 col-md-6 col-sm-7 col-xs-10  col-lg-offset-0 col-md-offset-1 col-sm-offset-0 col-xs-offset-2">
+		  							 <input type="text" className="form-control form-label" id="username" placeholder="User Name" name="username" valueLink={this.linkState('username')}/>
+		  						</div>
+		  					</div>
+		  					<div className="row form-group">
+		  						<div className="col-lg-3 col-md-2 col-sm-3 col-xs-8 col-md-offset-1 col-lg-offset-0 col-md-offset-1 col-sm-offset-0 col-xs-offset-4">
+		  							<label for="Password">Password:</label>
+		  						</div>
+		  						<div className="col-lg-6 col-md-6 col-sm-7 col-xs-10  col-lg-offset-0 col-md-offset-1 col-sm-offset-0 col-xs-offset-2">
+		  							 <input type="password" className="form-control form-label" id="password" placeholder="Password" name="password" valueLink={this.linkState('password')}/>
+		  						</div>
+		  					</div>
+		  					<div className="row form-group">
+		  						<div className="col-lg-offset-5 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+		  							<button type="submit" className="btn btn-secondary col-lg-4 col-md-10 col-sm-10 col-xs-10" id="loginBtn" onClick={this.handleSubmit}>Login</button>
+		  						</div>
+		  					</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		)
+	}
+});
+module.exports=LoginView
